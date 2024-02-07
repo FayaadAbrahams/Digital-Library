@@ -1,4 +1,4 @@
-package org.thoughtprocess;
+package com.thoughtprocess.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
