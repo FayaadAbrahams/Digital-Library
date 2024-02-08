@@ -1,29 +1,32 @@
 package com.thoughtprocess.controller;
 
 import com.thoughtprocess.domain.Book;
+import com.thoughtprocess.exception.BookIdMismatchException;
+import com.thoughtprocess.exception.BookNotFoundException;
 import com.thoughtprocess.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import com.thoughtprocess.repository.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/books")
 public class BookController {
+
     @Autowired
     private BookRepository bookRepository;
 
     @GetMapping
-    public Iterable findAll(){
+    public Iterable findAll() {
         return bookRepository.findAll();
     }
 
-    @GetMapping("/title{bookTitle}")
-    public List findByTitle(@PathVariable String bookTitle){
+    @GetMapping("/title/{bookTitle}")
+    public List findByTitle(@PathVariable String bookTitle) {
         return bookRepository.findByTitle(bookTitle);
     }
+
     @GetMapping("/{id}")
     public Book findOne(@PathVariable Long id) {
         return bookRepository.findById(id)
