@@ -1,7 +1,6 @@
 import com.thoughtprocess.domain.Book;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.apache.http.protocol.HTTP;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
