@@ -18,21 +18,3 @@ Before you begin, ensure you have the following installed:
 2. Navigate to the project directory: 
 
 ## Project Structure
-`simple-spring-boot/`
-`├── src/`
-`│   ├── main/`
-`│   │   ├── java/`
-`│   │   │   └── com/`
-`│   │   │       └── thoughtprocess/`
-`|   |   |             └──thoughtprocess/`
-`│   │   │           └── Application.java`
-`│   │   └── resources/`
-`│   │       └── application.properties`
-`│   └── test/`
-`│       └── java/`
-`│           └── com/`
-`│               └── example/`
-`│                   └── SimpleSpringBootApplicationTests.java`
-`├── .gitignore`
-`├── pom.xml`
-`└── README.md`
