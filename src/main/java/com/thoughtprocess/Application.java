@@ -29,4 +29,6 @@ public class Application {
         return server;
 
     }
+
+    // TODO: Install Maven to run tests externally
 }

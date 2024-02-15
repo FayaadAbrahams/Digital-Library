@@ -6,8 +6,8 @@ This repository contains a simple digital library that maintain books and leasin
 
 Before you begin, ensure you have the following installed: 
 
-* Java Development Kit (JDK) version 8 or later
-* Maven
+* [Java Development Kit JDK](https://www.oracle.com/za/java/technologies/downloads/) (version 8 or later)
+* [Maven](https://maven.apache.org/download.cgi)
 
 ## Getting Started 
 
@@ -28,8 +28,12 @@ Before you begin, ensure you have the following installed:
 2. Navigate to http://localhost:8081/ 
 
 ## How to run application test
+To run the Maven tests (Having Maven installed), execute the following command in your terminal/command prompt:
+1. Run the Application.
+2. Run in terminal.
 
+`mvn test`
 
 ## Project Structure
-1. Navigate to the project directory:
+1. Navigate to the project directory: src -> main -> java -> com -> thoughtprocess -> Application.java
 2. Postman collection in root directory of the -> digital-library.postman_collection.json
