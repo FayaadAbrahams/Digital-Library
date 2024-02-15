@@ -1,7 +1,8 @@
-package com.thoughtprocess.repository;
+package com.thoughtprocess.bookstore.repository;
 
+
+import com.thoughtprocess.bookstore.model.Book;
 import org.springframework.data.repository.CrudRepository;
-import com.thoughtprocess.domain.Book;
 
 import java.util.List;
 

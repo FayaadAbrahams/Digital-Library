@@ -1,4 +1,4 @@
-package com.thoughtprocess.domain;
+package com.thoughtprocess.bookstore.model;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -12,13 +12,6 @@ public class Book {
     private String title;
     @Column(nullable = false)
     private String author;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Book book)) return false;
-        return getId() == book.getId() && Objects.equals(getTitle(), book.getTitle()) && Objects.equals(getAuthor(), book.getAuthor());
-    }
 
     @Override
     public int hashCode() {
