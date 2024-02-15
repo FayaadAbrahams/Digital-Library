@@ -1,5 +1,6 @@
 package com.thoughtprocess.bookstore.controller;
 
+import com.sun.xml.bind.v2.TODO;
 import com.thoughtprocess.bookstore.model.Book;
 import com.thoughtprocess.exception.BookIdMismatchException;
 import com.thoughtprocess.exception.BookNotFoundException;
@@ -24,7 +25,12 @@ public class BookController {
 
     @GetMapping("/title/{bookTitle}")
     public List<Book> findByTitle(@PathVariable String bookTitle) {
-        return bookRepository.findByTitle(bookTitle);
+
+        List<Book> byTitle = bookRepository.findByTitle(bookTitle);
+
+//        TODO: Create mapping method (15 Feb 24)
+
+        return null;
     }
 
     @GetMapping("/{id}")

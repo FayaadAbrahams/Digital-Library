@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 //Primary application config class
 @ServletComponentScan
 @EnableJpaRepositories("com.thoughtprocess.bookstore.repository")
-@EntityScan("com.thoughtprocess.bookstore")
+@EntityScan("com.thoughtprocess.bookstore.model")
 @SpringBootApplication
 public class Application {
     public static void main(String[] args) {

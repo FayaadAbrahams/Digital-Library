@@ -1,9 +1,12 @@
+import com.sun.xml.bind.v2.TODO;
 import com.thoughtprocess.bookstore.model.Book;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.util.List;
 
@@ -13,6 +16,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class SpringBootBootstrapLiveTest {
+// TODO: Get the tests to run successfully
 
     private static final String API_ROOT = "http://localhost:8081/api/books";
 

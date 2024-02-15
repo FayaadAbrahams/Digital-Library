@@ -73,7 +73,7 @@
     </dependencies>
 
     <groupId>org.thoughtprocess</groupId>
-    <artifactId>Spring-Start-up</artifactId>
+    <artifactId>DigitalLibrary</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
