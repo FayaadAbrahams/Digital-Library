@@ -1,9 +1,9 @@
-package com.thoughtprocess.controller;
+package com.thoughtprocess.bookstore.controller;
 
-import com.thoughtprocess.domain.Book;
+import com.thoughtprocess.bookstore.model.Book;
 import com.thoughtprocess.exception.BookIdMismatchException;
 import com.thoughtprocess.exception.BookNotFoundException;
-import com.thoughtprocess.repository.BookRepository;
+import com.thoughtprocess.bookstore.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
