@@ -16,7 +16,6 @@ Before you begin, ensure you have the following installed:
 * `git clone https://gitlab.com/thoughtprocess2/spring-start-up.git`
 
 ## Connect to H2
-
 1. H2 configuration is in the application.properties
 2. When the server is running navigate to http://localhost:8082/login.jsp?
 3. Ensure Saved Settings = Generic H2 (Embedded) and Setting Name = Generic H2 (Embedded)
@@ -33,3 +32,4 @@ Before you begin, ensure you have the following installed:
 
 ## Project Structure
 1. Navigate to the project directory:
+2. Postman collection in root directory of the -> digital-library.postman_collection.json
