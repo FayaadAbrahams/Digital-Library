@@ -30,5 +30,4 @@ public class Application {
 
     }
 
-    // TODO: Install Maven to run tests externally
 }

@@ -2,20 +2,23 @@ import com.thoughtprocess.bookstore.model.Book;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
+import java.util.logging.Logger;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 @SpringBootTest
 public class SpringBootBootstrapLiveTest {
-// TODO: Get the tests to run successfully
 
     private static final String API_ROOT = "http://localhost:8081/api/books";
+
 
     //Try to find books using variant methods
     @Test
@@ -24,16 +27,16 @@ public class SpringBootBootstrapLiveTest {
         assertEquals(HttpStatus.OK.value(), response.getStatusCode());
     }
 
-//    @Test
-//    public void whenGetBooksByTitle_thenOK() {
-//        final Book book = createRandomBook();
-//        createBookAsUri(book);
-//
-//        final Response response = RestAssured.get(API_ROOT + "/title/" + book.getTitle());
-//        assertEquals(HttpStatus.OK.value(), response.getStatusCode());
-//        assertTrue(response.as(List.class)
-//                .size() > 0);
-//    }
+    @Test
+    public void whenGetBooksByTitle_thenOK() {
+        final Book book = createRandomBook();
+        createBookAsUri(book);
+
+        final Response response = RestAssured.get(API_ROOT + "/title/" + book.getTitle());
+        assertEquals(HttpStatus.OK.value(), response.getStatusCode());
+        assertTrue(response.as(List.class)
+                .size() > 0);
+    }
 
     @Test
     public void whenGetCreatedBookById_thenOK(){
@@ -41,6 +44,11 @@ public class SpringBootBootstrapLiveTest {
         String location = createBookAsUri(book);
         final Response response = RestAssured.get(location);
 
+        Logger log = Logger.getLogger(SpringBootBootstrapLiveTest.class.getName());
+        log.info(
+                "Title: " + book.getTitle() +
+                        "\tAuthor: " + book.getAuthor()
+        );
         assertEquals(HttpStatus.OK.value(), response.getStatusCode());
         assertEquals(book.getTitle(), response.jsonPath()
                 .get("title"));

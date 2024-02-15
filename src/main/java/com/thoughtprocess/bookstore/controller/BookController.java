@@ -1,7 +1,7 @@
 package com.thoughtprocess.bookstore.controller;
 
-import com.sun.xml.bind.v2.TODO;
 import com.thoughtprocess.bookstore.model.Book;
+import com.thoughtprocess.bookstore.model.apiresponse.BookResponse;
 import com.thoughtprocess.exception.BookIdMismatchException;
 import com.thoughtprocess.exception.BookNotFoundException;
 import com.thoughtprocess.bookstore.repository.BookRepository;
@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -24,13 +25,19 @@ public class BookController {
     }
 
     @GetMapping("/title/{bookTitle}")
-    public List<Book> findByTitle(@PathVariable String bookTitle) {
-
+    public List<BookResponse> findByTitle(@PathVariable String bookTitle) {
+        BookResponse bookResponseOb = new BookResponse();
         List<Book> byTitle = bookRepository.findByTitle(bookTitle);
-
-//        TODO: Create mapping method (15 Feb 24)
-
-        return null;
+        List<BookResponse> bookResp = new ArrayList<>();
+//        for(int i =0; i < byTitle.size(); i++)
+//        {
+//            bookResp.add(bookResponseOb.bookDataTransferObject(byTitle.get(i)));
+//        }
+        // Enhanced For loop
+        for (Book book : byTitle) {
+            bookResp.add(bookResponseOb.bookDataTransferObject(book));
+        }
+        return bookResp;
     }
 
     @GetMapping("/{id}")
