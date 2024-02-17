@@ -52,12 +52,14 @@ public class BookController {
     }
 
     @PostMapping
+    @ResponseBody
     public ResponseEntity<Book> create(@RequestBody Book book) {
         Book createdBook = bookRepository.save(book);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdBook);
     }
 
     @DeleteMapping("/delete/{id}")
+    @ResponseBody
     public void delete(@PathVariable long id) {
         bookRepository.findById(id).orElseThrow(BookNotFoundException::new);
         bookRepository.deleteById(id);
