@@ -1,18 +1,15 @@
 <html lang="eng" xmlns:th="http://www.w3.org/1999/xhtml">
 <head><title>Digital Library Homepage</title></head>
 <body>
-<h1>Welcome to <span th:text="${appName}">The Library App!</span></h1></body>
-<!--for loop apiResponse-->
-<!--<p>Book <span th:text="${apiRes.id}">Our App</span></p></body>-->
-<!--<p>Book title <span th:text="${apiRes.title}">Our App</span></p></body>-->
-<!--<p>Book title <span th:text="${apiRes.author}">Our App</span></p></body>-->
-<!--TODO: Build logic on html for printing data from api response-->
-<h2>Books within our library: </h2>
-    <ul>
-        <li th:each="book" ${books}>
-            <p th:text = "${book.title}"></p>
-            <p th:text = "${book.author}"></p>
-        </li>
-    </ul>
+<h1>Welcome to the Digital Library</h1>
+<h2>Books within our library:</h2>
+<ul>
+    <!-- Iterate over each book in the 'books' list -->
+    <li th:each="book : ${books}">
+        <p>Title: <span th:text="${book.title}"></span></p>
+        <p>Author: <span th:text="${book.author}"></span></p>
+        <p>Cost: <span th:text="${book.cost}"></span></p>
+    </li>
+</ul>
 <!--<p>Welcome to <span th:text="${appName}">Our App</span></p></body>-->
 </html>

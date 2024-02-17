@@ -1,9 +1,11 @@
 package com.thoughtprocess.bookstore.model;
 
+import lombok.Builder;
+
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
+@Builder
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -12,10 +14,19 @@ public class Book {
     private String title;
     @Column(nullable = false)
     private String author;
+    @Column(nullable = false)
+    private Double cost;
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getTitle(), getAuthor());
+
+    public Book(long id, String title, String author, Double cost) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.cost = cost;
+    }
+
+
+    public Book() {
     }
 
     @Override
@@ -24,9 +35,9 @@ public class Book {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
+                ", cost=" + cost +
                 '}';
     }
-
 
     public long getId() {
         return id;
@@ -50,5 +61,13 @@ public class Book {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public Double getCost() {
+        return cost;
+    }
+
+    public void setCost(Double cost) {
+        this.cost = cost;
     }
 }

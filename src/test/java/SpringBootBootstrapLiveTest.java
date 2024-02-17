@@ -32,7 +32,7 @@ public class SpringBootBootstrapLiveTest {
         final Book book = createRandomBook();
         createBookAsUri(book);
 
-        final Response response = RestAssured.get(API_ROOT + "/title/" + book.getTitle());
+        final Response response = RestAssured.get(API_ROOT + "/getByAuthor/" + book.getTitle());
         assertEquals(HttpStatus.OK.value(), response.getStatusCode());
         assertTrue(response.as(List.class)
                 .size() > 0);
@@ -89,7 +89,7 @@ public class SpringBootBootstrapLiveTest {
     public void whenUpdateCreatedBook_thenUpdated(){
         Book book = createRandomBook();
         String location = createBookAsUri(book);
-        book.setId(Long.parseLong(location.split("api/books/")[1]));
+        book.setId(Long.parseLong(location.split("api/books/findOne/")[1]));
         book.setAuthor("newAuthor");
         Response response = RestAssured.given()
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
