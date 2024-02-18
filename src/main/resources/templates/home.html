@@ -3,6 +3,7 @@
 <body>
 <h1>Welcome to the Digital Library</h1>
 <h2>Books within our library:</h2>
+
 <ul>
     <!-- Iterate over each book in the 'books' list -->
     <li th:each="book : ${books}">
@@ -11,5 +12,7 @@
         <p>Cost: <span th:text="${book.cost}"></span></p>
     </li>
 </ul>
+
+</body>
 <!--<p>Welcome to <span th:text="${appName}">Our App</span></p></body>-->
 </html>

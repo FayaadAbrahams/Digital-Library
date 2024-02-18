@@ -18,7 +18,8 @@ public class BookService {
 
     public List<BookDTO> findByTitle(String bookTitle) {
         List<Book> books = bookRepo.findByTitle(bookTitle);
-
+        //Transfers the book objects, to a List of items
+        // This then collects the items from the method fromBookDTO to a List
         // Simplified to an inline variable return
         return books.stream().map(this::fromBookDTO).collect(Collectors.toList());
     }
@@ -31,7 +32,6 @@ public class BookService {
 
     public List<BookDTO> findAll() {
         List<Book> bookList = (List<Book>) bookRepo.findAll();
-
         return bookList.stream().map(this::fromBookDTO).collect(Collectors.toList());
     }
 
