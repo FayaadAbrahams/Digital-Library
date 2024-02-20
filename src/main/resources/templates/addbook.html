@@ -1,44 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Adding Books</title>
+    <title>Upload a Book</title>
 </head>
 <body>
-<h1>Add a book</h1>
-<form action="/digitalib/books/add-book" method="POST">
+<h1>Upload a book</h1>
+<form action="#" th:action="@{/add-book}" th:object="${greeting}" method="POST">
     <!-- Table to add items to Database   -->
-    <table>
-        <tr>
-            <td>
-                <label for="title">Title</label>
-            </td>
-            <td>
-                <input type="text" id="title" name="title">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="author">Author</label>
-            </td>
-            <td>
-                <input type="text" id="author" name="author">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="cost">Cost</label>
-            </td>
-            <td>
-                <input type="text" id="cost" name="cost">
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="submit" value="Submit">
-            </td>
-        </tr>
-    </table>
+    <p>Title: <label>
+        <input type="text" th:field="*{title}"/>
+    </label></p>
+    <p>Author: <label>
+        <input type="text" th:field="*{author}"/>
+    </label></p>
+    <p>Cost: <label>
+        <input type="text" th:field="*{cost}"/>
+    </label></p>
+
+    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset" /></p>
 </form>
+
 </body>
 </html>
+
+

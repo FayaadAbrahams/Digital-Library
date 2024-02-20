@@ -15,7 +15,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+//http://localhost:8081/digitalib/books/home
 @Controller
 @RequestMapping("/digitalib/books")
 public class BookController {
@@ -51,15 +51,14 @@ public class BookController {
         return bookRepository.findById(id).orElseThrow(BookNotFoundException::new);
     }
 
-    @PostMapping("/add-book")
-    @ResponseBody
-    public String create(@RequestBody BookDTO bookDTO, ModelMap model) {
+  @RequestMapping(value = "/add-book", method=RequestMethod.GET)
+    public String create(@RequestBody BookDTO bookDTO, Model model) {
         model.addAttribute("title", bookDTO.getTitle());
         model.addAttribute("author", bookDTO.getAuthor());
         model.addAttribute("cost", bookDTO.getCost());
 
-        List<BookDTO> books = bookService.findAll();
-        model.addAttribute("books", books);
+//        List<BookDTO> books = bookService.findAll();
+//        model.addAttribute("books", books);
         return "addbook.html";
     }
 
