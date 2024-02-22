@@ -32,6 +32,7 @@ public class BookService {
 
     public List<BookDTO> findAll() {
         List<Book> bookList = (List<Book>) bookRepo.findAll();
+        // Use Java Streams to map each Book entity to a BookDTO
         return bookList.stream().map(this::fromBookDTO).collect(Collectors.toList());
     }
 
