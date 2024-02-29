@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Upload a book</h1>
-<form action="#" th:action="@{/add-book}" th:object="${greeting}" method="POST">
+<form action="/digitalib/books/" th:action="@{/digitalib/books/add-book}" th:object="${book}" method="POST">
     <!-- Table to add items to Database   -->
     <p>Title: <label>
         <input type="text" th:field="*{title}"/>
@@ -18,7 +18,10 @@
         <input type="text" th:field="*{cost}"/>
     </label></p>
 
-    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset" /></p>
+    <p>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </p>
 </form>
 
 </body>

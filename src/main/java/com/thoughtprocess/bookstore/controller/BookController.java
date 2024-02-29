@@ -6,12 +6,11 @@ import com.thoughtprocess.bookstore.repository.BookRepository;
 import com.thoughtprocess.bookstore.service.BookService;
 import com.thoughtprocess.exception.BookIdMismatchException;
 import com.thoughtprocess.exception.BookNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,10 +18,16 @@ import java.util.List;
 @Controller
 @RequestMapping("/digitalib/books")
 public class BookController {
+
+    private final Logger LOGGER = LoggerFactory.getLogger(BookController.class);
+    private final BookRepository bookRepository;
+    private final BookService bookService;
+
     @Autowired
-    private BookRepository bookRepository;
-    @Autowired
-    private BookService bookService;
+    public BookController(BookRepository bookRepository, BookService bookService) {
+        this.bookRepository = bookRepository;
+        this.bookService = bookService;
+    }
 
     @GetMapping("/all")
     @ResponseBody
@@ -31,6 +36,7 @@ public class BookController {
     }
     @GetMapping("/home")
     public String homePage(Model model) {
+        LOGGER.info("Home Page : Fetching all books from book repository.");
         List<BookDTO> books = bookService.findAll();
         model.addAttribute("books", books);
         return "home";
@@ -51,15 +57,22 @@ public class BookController {
         return bookRepository.findById(id).orElseThrow(BookNotFoundException::new);
     }
 
-  @RequestMapping(value = "/add-book", method=RequestMethod.GET)
-    public String create(@RequestBody BookDTO bookDTO, Model model) {
-        model.addAttribute("title", bookDTO.getTitle());
-        model.addAttribute("author", bookDTO.getAuthor());
-        model.addAttribute("cost", bookDTO.getCost());
+  @GetMapping("/add-book")
+    public String addBookPage(Model model) {
+      LOGGER.info("Add Book Page : book template.");
 
-//        List<BookDTO> books = bookService.findAll();
-//        model.addAttribute("books", books);
-        return "addbook.html";
+      BookDTO bookDTO = new BookDTO(0.0d, "", "");
+        model.addAttribute("book", bookDTO);
+        return "addbook";
+    }
+
+  @PostMapping("/add-book")
+    public String addBook(@ModelAttribute("book") BookDTO book) {
+      LOGGER.info("Add Book Page : attempting to add book to the book repository.");
+
+      LOGGER.info("Add Book Page : book was successfully added to the book repository.");
+//      TODO IA: 29 Feb :: please return all books in desc order, also map it to the add-book html
+      return "addbook";
     }
 
     @DeleteMapping("/delete/{id}")
