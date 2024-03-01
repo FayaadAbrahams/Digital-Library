@@ -36,7 +36,27 @@ public class BookService {
         return bookList.stream().map(this::fromBookDTO).collect(Collectors.toList());
     }
 
+    public void save(BookDTO bookDTO)
+    {
+       Book book = toBookDTO(bookDTO);
+       bookRepo.save(book);
+    }
+
+    public boolean doesTitleExist(String title)
+    {
+        return bookRepo.existsByTitle(title);
+    }
+
     public BookDTO fromBookDTO(Book book) {
         return new BookDTO(book.getCost(), book.getTitle(), book.getAuthor());
     }
+    public Book toBookDTO(BookDTO bookDTO)
+    {
+        Book book = new Book();
+        book.setCost(bookDTO.getCost());
+        book.setTitle(bookDTO.getTitle());
+        book.setAuthor(bookDTO.getAuthor());
+        return book;
+    }
+
 }

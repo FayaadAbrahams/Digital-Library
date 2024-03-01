@@ -17,6 +17,9 @@ public class BookDTO {
         this.author = author;
     }
 
+    public BookDTO() {
+    }
+
     public Double getCost() {
         return cost;
     }

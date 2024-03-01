@@ -1,29 +1,59 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous">
 <head>
     <meta charset="UTF-8">
     <title>Upload a Book</title>
 </head>
 <body>
 <h1>Upload a book</h1>
-<form action="/digitalib/books/" th:action="@{/digitalib/books/add-book}" th:object="${book}" method="POST">
+<form action="/digitalib/books/" th:action="@{/digitalib/books/add-book}" th:object="${book}" method="POST" >
     <!-- Table to add items to Database   -->
     <p>Title: <label>
-        <input type="text" th:field="*{title}"/>
+        <input class="text" type="text" th:field="*{title}" autocomplete="off"/>
     </label></p>
     <p>Author: <label>
-        <input type="text" th:field="*{author}"/>
+        <input class="text" type="text" th:field="*{author}" autocomplete="off"/>
     </label></p>
     <p>Cost: <label>
-        <input type="text" th:field="*{cost}"/>
+        <input class="text" type="text" th:field="*{cost}" autocomplete="off"/>
     </label></p>
 
     <p>
         <button type="submit">Submit</button>
-        <button type="reset">Reset</button>
+        <button type="reset" onclick="clearInput()">Reset</button>
     </p>
 </form>
 
+<table class="table" >
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Cost</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+        <td><span th:text="${book.title}"></span></td>
+        <td><span th:text="${book.author}"></span></td>
+        <td><span th:text="${book.cost}"></span></td>
+    </tr>
+    </tbody>
+</table>
+<script>
+    function clearInput() {
+    console.log("Clearing fields");
+    var text_boxes = document.getElementsByClassName("text");
+    for(var i = 0; i < text_boxes.length; i++)
+    {
+        text_boxes[i].value = "";
+    }
+    }
+</script>
 </body>
 </html>
 
