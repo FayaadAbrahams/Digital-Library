@@ -7,7 +7,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-//Primary application config class
+//Primary application config class\
 @ServletComponentScan
 @EnableJpaRepositories("com.thoughtprocess.bookstore.repository")
 @EntityScan("com.thoughtprocess.bookstore.model")
@@ -15,8 +15,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
-        System.out.println("========================================");
-        System.out.println("Application is running successfully...");
     }
 
     @Bean
