@@ -11,25 +11,36 @@
 <body>
 <h1>Upload a book</h1>
 <form action="/digitalib/books/" th:action="@{/digitalib/books/add-book}" th:object="${book}" method="POST" >
-    <!-- Table to add items to Database   -->
-    <p>Title: <label>
-        <input class="text" type="text" th:field="*{title}" autocomplete="off"/>
-    </label></p>
-    <p>Author: <label>
-        <input class="text" type="text" th:field="*{author}" autocomplete="off"/>
-    </label></p>
-    <p>Cost: <label>
-        <input class="text" type="text" th:field="*{cost}" autocomplete="off"/>
-    </label></p>
-
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="text-box1">Title</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1" th:field=*{title} >
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="text-box2">Author</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1" th:field=*{author} >
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="text-box3">Cost (R)</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1" th:field=*{cost} >
+    </div>
     <p>
-        <button type="submit">Submit</button>
-        <button type="reset" onclick="clearInput()">Reset</button>
+        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="button" class="btn btn-danger" onclick="clearInput()">Clear</button>
     </p>
-</form>
 
-<table class="table" >
-    <thead class="thead-dark">
+</form>
+<h3>Books in Database</h3>
+<div class="row justify-content-center">
+    <div class="col-auto">
+<table id="table" class="table table-bordered">
+
+    <thead class="thead-dark table-responsive">
     <tr>
         <th scope="col">Title</th>
         <th scope="col">Author</th>
@@ -44,6 +55,8 @@
     </tr>
     </tbody>
 </table>
+    </div>
+</div>
 <script>
     function clearInput() {
     console.log("Clearing fields");
@@ -54,6 +67,20 @@
     }
     }
 </script>
+<style>
+    h1{
+      padding: 30px;
+    }
+
+    body{
+    text-align: center;
+    }
+
+    form{
+    text-align: center;
+    display: inline-block;
+    }
+</style>
 </body>
 </html>
 

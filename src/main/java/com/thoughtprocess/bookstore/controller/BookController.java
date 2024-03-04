@@ -18,6 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 //http://localhost:8081/digitalib/books/home
+//http://localhost:8081/digitalib/books/add-book
 @Controller
 @RequestMapping("/digitalib/books")
 public class BookController {
@@ -65,8 +66,13 @@ public class BookController {
     public String addBookPage(Model model) {
         LOGGER.info("Add Book Page : book template.");
         // Default State when loading up the page
-        BookDTO bookDTO = new BookDTO(0.00, "", "");
-        model.addAttribute("book", bookDTO);
+//        BookDTO bookDTO = new BookDTO(0.00, "", "");
+//        model.addAttribute("book", bookDTO);
+//        return "addbook";
+        List<BookDTO> books = bookService.findAll();
+        // Return the list in reversed order
+        Collections.reverse(books);
+        model.addAttribute("books", books);
         return "addbook";
     }
 
