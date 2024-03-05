@@ -66,35 +66,30 @@ public class BookController {
     public String addBookPage(Model model) {
         LOGGER.info("Add Book Page : book template.");
         // Default State when loading up the page
-//        BookDTO bookDTO = new BookDTO(0.00, "", "");
-//        model.addAttribute("book", bookDTO);
-//        return "addbook";
-        List<BookDTO> books = bookService.findAll();
-        // Return the list in reversed order
-        Collections.reverse(books);
-        model.addAttribute("books", books);
+        BookDTO bookDTO = new BookDTO(0.00, "", "");
+        model.addAttribute("book", bookDTO);
         return "addbook";
     }
 
     @PostMapping("/add-book")
     public String addBook(@ModelAttribute("book") BookDTO bookDTO, BindingResult result, Model model) {
         LOGGER.info("Add Book Page : attempting to add book to the book repository.");
-        // Bug: Figure out how to prevent the last Object being the default value in addbook.html
+
         if (result.hasErrors()) {
             LOGGER.warn("Add Book Page : book was not added to the book repository.");
             return "addbook";
         } else if (bookService.doesTitleExist(bookDTO.getTitle())) {
-
             LOGGER.warn("Add Book Page : book was not added, already exists.");
             return "addbook";
         }
         bookService.save(bookDTO);
         LOGGER.info("Add Book Page : book was successfully added to the book repository.");
-        //      TODO IA: 29 Feb :: please return all books in desc order, also map it to the add-book html
+        //TODO IA: 05 Mar :: Optimize the code, so that methods are less bulky (OOP)
         List<BookDTO> books = bookService.findAll();
         // Return the list in reversed order
         Collections.reverse(books);
         model.addAttribute("books", books);
+        model.addAttribute("book", new BookDTO(0d, "",""));
         return "addbook";
     }
 

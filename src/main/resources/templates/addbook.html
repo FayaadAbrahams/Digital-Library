@@ -7,6 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Upload a Book</title>
+<!--TODO FA: 05 Mar :: Implement validation for the label to pop up-->
+    <label style="">Duplicate book</label>
 </head>
 <body>
 <h1>Upload a book</h1>
@@ -21,7 +23,7 @@
         <div class="input-group-prepend">
             <span class="input-group-text" id="text-box2">Author</span>
         </div>
-        <input type="text" class="form-control" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1" th:field=*{author} >
+        <input type="text" class="form-control" placeholder="Author" aria-label="Username" aria-describedby="basic-addon1" th:field=*{author} >
     </div>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -31,7 +33,7 @@
     </div>
     <p>
         <button type="submit" class="btn btn-success">Submit</button>
-        <button type="button" class="btn btn-danger" onclick="clearInput()">Clear</button>
+        <button type="button" class="btn btn-danger">Clear</button>
     </p>
 
 </form>
@@ -57,16 +59,6 @@
 </table>
     </div>
 </div>
-<script>
-    function clearInput() {
-    console.log("Clearing fields");
-    var text_boxes = document.getElementsByClassName("text");
-    for(var i = 0; i < text_boxes.length; i++)
-    {
-        text_boxes[i].value = "";
-    }
-    }
-</script>
 <style>
     h1{
       padding: 30px;
