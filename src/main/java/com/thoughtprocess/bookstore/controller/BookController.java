@@ -13,8 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import java.util.Collections;
 
+import javax.validation.Valid;
 import java.util.List;
 
 //http://localhost:8081/digitalib/books/home
@@ -24,11 +24,13 @@ import java.util.List;
 public class BookController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(BookController.class);
+    private final BookHelper bookHelper;
     private final BookRepository bookRepository;
     private final BookService bookService;
 
     @Autowired
-    public BookController(BookRepository bookRepository, BookService bookService) {
+    public BookController(BookHelper bookHelper, BookRepository bookRepository, BookService bookService) {
+        this.bookHelper = bookHelper;
         this.bookRepository = bookRepository;
         this.bookService = bookService;
     }
@@ -64,32 +66,22 @@ public class BookController {
 
     @GetMapping("/add-book")
     public String addBookPage(Model model) {
-        LOGGER.info("Add Book Page : book template.");
+        LOGGER.info("Add Book Page : default book template.");
         // Default State when loading up the page
-        BookDTO bookDTO = new BookDTO(0.00, "", "");
-        model.addAttribute("book", bookDTO);
+        model.addAttribute("book", new BookDTO());
         return "addbook";
     }
 
     @PostMapping("/add-book")
-    public String addBook(@ModelAttribute("book") BookDTO bookDTO, BindingResult result, Model model) {
-        LOGGER.info("Add Book Page : attempting to add book to the book repository.");
-
+    public String addBookToArchive(@ModelAttribute("book") @Valid BookDTO bookDTO, BindingResult result, Model model) {
+        LOGGER.info("Add Book Page : attempting to add book to the book archive.");
         if (result.hasErrors()) {
-            LOGGER.warn("Add Book Page : book was not added to the book repository.");
-            return "addbook";
-        } else if (bookService.doesTitleExist(bookDTO.getTitle())) {
-            LOGGER.warn("Add Book Page : book was not added, already exists.");
+            LOGGER.warn("Add Book Page : book was not added to the book archive.");
             return "addbook";
         }
-        bookService.save(bookDTO);
-        LOGGER.info("Add Book Page : book was successfully added to the book repository.");
-        //TODO IA: 05 Mar :: Optimize the code, so that methods are less bulky (OOP)
-        List<BookDTO> books = bookService.findAll();
-        // Return the list in reversed order
-        Collections.reverse(books);
-        model.addAttribute("books", books);
-        model.addAttribute("book", new BookDTO(0d, "",""));
+        bookHelper.saveBook(bookDTO);
+        LOGGER.info("Add Book Page : book was added successfully to archive");
+        bookHelper.updateModelAttributes(model);
         return "addbook";
     }
 

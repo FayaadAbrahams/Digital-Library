@@ -7,9 +7,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Upload a Book</title>
-<!--TODO FA: 05 Mar :: Implement validation for the label to pop up-->
-    <label style="">Duplicate book</label>
+
 </head>
+<!--TODO FA: 05 Mar :: Implement validation for the label to pop up-->
+<div id="alert-box" class="alert alert-danger" role="alert">
+    Value exists!
+</div>
 <body>
 <h1>Upload a book</h1>
 <form action="/digitalib/books/" th:action="@{/digitalib/books/add-book}" th:object="${book}" method="POST" >
@@ -17,23 +20,23 @@
         <div class="input-group-prepend">
             <span class="input-group-text" id="text-box1">Title</span>
         </div>
-        <input type="text" class="form-control" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1" th:field=*{title} >
+        <input type="text" class="form-control" placeholder="Title" aria-label="Title Field" aria-describedby="Title Field" th:field=*{title}>
     </div>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
             <span class="input-group-text" id="text-box2">Author</span>
         </div>
-        <input type="text" class="form-control" placeholder="Author" aria-label="Username" aria-describedby="basic-addon1" th:field=*{author} >
+        <input type="text" class="form-control" placeholder="Author" aria-label="Author Field" aria-describedby="Author Field" th:field=*{author}>
     </div>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
             <span class="input-group-text" id="text-box3">Cost (R)</span>
         </div>
-        <input type="text" class="form-control" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1" th:field=*{cost} >
+        <input type="text" class="form-control" placeholder="Cost" aria-label="Cost Field" aria-describedby="Cost Field" th:field=*{cost}>
     </div>
     <p>
         <button type="submit" class="btn btn-success">Submit</button>
-        <button type="button" class="btn btn-danger">Clear</button>
+        <button type="reset" class="btn btn-danger">Clear</button>
     </p>
 
 </form>
@@ -59,6 +62,7 @@
 </table>
     </div>
 </div>
+
 <style>
     h1{
       padding: 30px;
@@ -71,6 +75,12 @@
     form{
     text-align: center;
     display: inline-block;
+    }
+
+    #alert-box{
+     margin: auto;
+     width: 30%;
+     padding: 10px;
     }
 </style>
 </body>
