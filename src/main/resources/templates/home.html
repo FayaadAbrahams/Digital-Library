@@ -3,36 +3,56 @@
       rel="stylesheet"
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous">
-<head><title>Digital Library Homepage</title></head>
+<head><title>Digital Library Homepage</title>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="home.html">Book Library</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="addbook.html"><span class="sr-only">Add Book</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</head>
 <body>
 <h1>Welcome to the Digital Library</h1>
 <h2>Books within our library:</h2>
-
-<!--<ul>-->
-<!--    &lt;!&ndash; Iterate over each book in the 'books' list &ndash;&gt;-->
-<!--    <li th:each="book : ${books}">-->
-<!--        <p>Title: <span th:text="${book.title}"></span></p>-->
-<!--        <p>Author: <span th:text="${book.author}"></span></p>-->
-<!--        <p>Cost: <span th:text="${book.cost}"></span></p>-->
-<!--    </li>-->
-<!--</ul>-->
-<table class="table" >
-    <thead class="thead-dark">
-    <tr>
-        <th scope="col">Title</th>
-        <th scope="col">Author</th>
-        <th scope="col">Cost</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="book : ${books}">
-        <td><span th:text="${book.title}"></span></td>
-        <td><span th:text="${book.author}"></span></td>
-        <td><span th:text="${book.cost}"></span></td>
-    </tr>
-    </tbody>
-</table>
-
+<div class="form-hold">
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Cost</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book : ${books}">
+            <td><span th:text="${book.title}"></span></td>
+            <td><span th:text="${book.author}"></span></td>
+            <td><span th:text="${book.cost}"></span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
-<!--<p>Welcome to <span th:text="${appName}">Our App</span></p></body>-->
+<style>
+    h1{
+     padding: 30px;
+   }
+
+   body{
+   text-align: center;
+   }
+
+    .form-hold{
+    text-align: center;
+    display: inline-block;
+    }
+</style>
 </html>

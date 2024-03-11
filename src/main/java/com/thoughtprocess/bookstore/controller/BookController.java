@@ -74,16 +74,19 @@ public class BookController {
 
     @PostMapping("/add-book")
     public String addBookToArchive(@ModelAttribute("book") @Valid BookDTO bookDTO, BindingResult result, Model model) {
-        LOGGER.info("Add Book Page : attempting to add book to the book archive.");
+        LOGGER.info("Add Book Page : Attempting to add book to the book archive...");
         if (result.hasErrors()) {
-            LOGGER.warn("Add Book Page : book was not added to the book archive.");
-            return "addbook";
+            bookHelper.prepareModel(model, "danger", "Form contents are not valid, please retry!");
+        } else if (bookHelper.validateBookObject(bookDTO)) {
+            String message = bookHelper.isBookTitleUnique(bookDTO) ? "The book title already exists" : "The cost is invalid";
+            bookHelper.prepareModel(model, "danger", message);
+        } else {
+            bookHelper.addBookAndNotifySuccess(bookDTO, model);
         }
-        bookHelper.saveBook(bookDTO);
-        LOGGER.info("Add Book Page : book was added successfully to archive");
-        bookHelper.updateModelAttributes(model);
+        model.addAttribute("books", bookHelper.fetchAllBooks());
         return "addbook";
     }
+
 
     @DeleteMapping("/delete/{id}")
     @ResponseBody
