@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 
 import java.util.Collections;
 import java.util.List;
@@ -25,8 +26,18 @@ public class BookHelper {
         this.bookService = bookService;
     }
 
-    public boolean validateBookObject(BookDTO bookDTO) {
-        if (!isBookTitleUnique(bookDTO)) {
+    public void processBookSubmission(BookDTO bookDTO, BindingResult result, Model model) {
+        if (!validateBookSubmission(bookDTO)) {
+            String message = isBookTitleUnique(bookDTO) ? "The book title already exists" : "The cost is invalid";
+            prepareModel(model, "danger", message);
+            updateModelAttributes(model);
+        } else {
+            addBookAndNotifySuccess(bookDTO, model);
+        }
+    }
+
+    public boolean validateBookSubmission(BookDTO bookDTO) {
+        if (isBookTitleUnique(bookDTO)) {
             LOGGER.warn("Book Helper : Book was not added to the book archive due to 'Title' already existing -> " + bookDTO.getTitle());
             return false;
         } else if (!isCostValid(bookDTO)) {
@@ -44,7 +55,7 @@ public class BookHelper {
     }
 
     public boolean isBookTitleUnique(BookDTO bookDTO) {
-        return bookService.findByTitle(bookDTO.getTitle()).isEmpty();
+        return !bookService.findByTitle(bookDTO.getTitle()).isEmpty();
     }
 
     public boolean isCostValid(BookDTO bookDTO) {
