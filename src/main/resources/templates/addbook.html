@@ -4,31 +4,33 @@
       rel="stylesheet"
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous">
-<head>
-    <meta charset="UTF-8">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="home.html">Book Library</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="addbook.html"><span class="sr-only">Add Book</span></a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <title>Upload a Book</title>
-</head>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
+<head>
+    <title>Manage Books</title>
+</head>
+<body>
+<meta charset="UTF-8">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" th:href="@{/digitalib/books/home}">Book Library</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/digitalib/books/add-book}">Manage Books</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 <div th:if="${message}" class="alert" th:classappend="'alert-' + ${messageType}">
     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
     <span th:text="${message}"></span>
 </div>
-
-<body>
 <h1>Upload a book</h1>
 <form action="/digitalib/books/" th:action="@{/digitalib/books/add-book}" th:object="${book}" method="POST">
     <div class="input-group mb-3">
@@ -56,7 +58,6 @@
         <button type="submit" class="btn btn-success">Submit</button>
         <button type="reset" class="btn btn-danger">Clear</button>
     </p>
-
 </form>
 <h3>Books in Database</h3>
 <div class="row justify-content-center">
